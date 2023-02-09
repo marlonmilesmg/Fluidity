@@ -5,53 +5,70 @@ public class Car {
 
     private int cargoSpace = 0;
     private VehicleType vehicleType;
+    private Stats stats = new Stats();
+    private ServiceVehicle serviceVehicle = new ServiceVehicle();
+    private StartVehicle startVehicle = new StartVehicle();
+    private LoadVehicle loadVehicle = new LoadVehicle();
 
-    public Car(VehicleType vehicleType) {
+    public Car(VehicleType vehicleType, int cargoLoad) {
         if (vehicleType == null){
             throw new IllegalArgumentException("Vehicle type must be specified");
         }
         this.vehicleType = vehicleType;
+        serviceVehicle.changeOil();
+        serviceVehicle.fillUpPetrol();
+        loadVehicle.addCargo(cargoLoad);
+        startVehicle.drive();
+        stats.printStats();
     }
 
-    public void drive() {
-        //implementation hidden
-        System.out.println("Driving the car");
-    }
-
-    public void addCargo(int kgs) {
-
-        switch (vehicleType){
-            case CAR:
-            case ELECTRIC_CAR:
-                if (kgs > 500) {
-                    throw new IllegalArgumentException("Too heavy. The vehicle can only carry up to 500kgs.");
-                }
-                break;
-            case TRUCK:
-                if (kgs > 18000) {
-                    throw new IllegalArgumentException("Too heavy. The truck can only carry up to 18000kgs.");
-                }
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid vehicle type.");
+    private class StartVehicle {
+        public void drive() {
+            //implementation hidden
+            System.out.println("Driving the car");
         }
-        this.cargoSpace = kgs;
     }
 
-    public void fillUpPetrol() {
-        //implementation hidden
-        System.out.println("Filling up petrol.");
+    private class LoadVehicle {
+        public void addCargo(int kgs) {
+
+            switch (vehicleType){
+                case CAR:
+                case ELECTRIC_CAR:
+                    if (kgs > 500) {
+                        throw new IllegalArgumentException("Too heavy. The vehicle can only carry up to 500kgs.");
+                    }
+                    break;
+                case TRUCK:
+                    if (kgs > 18000) {
+                        throw new IllegalArgumentException("Too heavy. The truck can only carry up to 18000kgs.");
+                    }
+                    break;
+                default:
+                    throw new IllegalArgumentException("Invalid vehicle type.");
+            }
+            cargoSpace = kgs;
+        }
     }
 
-    public void changeOil() {
-        //implementation hidden
-        System.out.println("Changing the oil.");
+    private class ServiceVehicle {
+        public void fillUpPetrol() {
+            //implementation hidden
+            System.out.println("Filling up petrol.");
+        }
+
+        public void changeOil() {
+            //implementation hidden
+            System.out.println("Changing the oil.");
+        }
     }
 
-    public void printStats() {
-        //implementation hidden
-        System.out.println("Vehicle Type: " + vehicleType);
-        System.out.println("Cargo space: " + cargoSpace + "kgs");
+    private class Stats {
+        public void printStats() {
+            //implementation hidden
+            System.out.println("Vehicle Type: " + vehicleType);
+            System.out.println("Cargo space loaded: " + cargoSpace + "kgs");
+        }
     }
 
 }
