@@ -7,6 +7,9 @@ public class Car {
     private VehicleType vehicleType;
 
     public Car(VehicleType vehicleType) {
+        if (vehicleType == null){
+            throw new IllegalArgumentException("Vehicle type must be specified");
+        }
         this.vehicleType = vehicleType;
     }
 
