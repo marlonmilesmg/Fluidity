@@ -11,6 +11,7 @@ public class Car {
     private LoadVehicle loadVehicle = new LoadVehicle();
 
     public Car(VehicleType vehicleType, int cargoLoad) {
+        // TODO: Optional check for null check for cargoLoad to be loaded
         if (vehicleType == null){
             throw new IllegalArgumentException("Vehicle type must be specified");
         }
