@@ -4,43 +4,51 @@ public class Car {
 
 
     private int cargoSpace = 0;
-    private int vehicleType = 0;
+    private VehicleType vehicleType;
 
-    public Car(int vehicleType) {
+    public Car(VehicleType vehicleType) {
         this.vehicleType = vehicleType;
     }
 
     public void drive() {
         //implementation hidden
+        System.out.println("Driving the car");
     }
 
     public void addCargo(int kgs) {
-        if (vehicleType == 0) {   //car
-            if (kgs > 500) {
-                throw new IllegalArgumentException("too heavy");
-            }
-        } else if (vehicleType == 1) {  //electric car
-            if (kgs > 500) {
-                throw new IllegalArgumentException("too heavy");
-            }
-        } else if (vehicleType == 2) {  //truck
-            if (kgs > 18000) {
-                throw new IllegalArgumentException("too heavy");
-            }
+
+        switch (vehicleType){
+            case CAR:
+            case ELECTRIC_CAR:
+                if (kgs > 500) {
+                    throw new IllegalArgumentException("Too heavy. The vehicle can only carry up to 500kgs.");
+                }
+                break;
+            case TRUCK:
+                if (kgs > 18000) {
+                    throw new IllegalArgumentException("Too heavy. The truck can only carry up to 18000kgs.");
+                }
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid vehicle type.");
         }
         this.cargoSpace = kgs;
     }
 
     public void fillUpPetrol() {
         //implementation hidden
+        System.out.println("Filling up petrol.");
     }
 
     public void changeOil() {
         //implementation hidden
+        System.out.println("Changing the oil.");
     }
 
     public void printStats() {
         //implementation hidden
+        System.out.println("Vehicle Type: " + vehicleType);
+        System.out.println("Cargo space: " + cargoSpace + "kgs");
     }
 
 }
