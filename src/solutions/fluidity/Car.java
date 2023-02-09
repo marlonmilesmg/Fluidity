@@ -37,12 +37,12 @@ public class Car {
                 case CAR:
                 case ELECTRIC_CAR:
                     if (kgs > 500) {
-                        throw new IllegalArgumentException("Too heavy. The vehicle can only carry up to 500kgs.");
+                        throw new IllegalArgumentException("Too heavy. The vehicle can only carry up to 500kgs. Attempted to load " + kgs + "kgs");
                     }
                     break;
                 case TRUCK:
                     if (kgs > 18000) {
-                        throw new IllegalArgumentException("Too heavy. The truck can only carry up to 18000kgs.");
+                        throw new IllegalArgumentException("Too heavy. The truck can only carry up to 18000kgs. Attempted to load " + kgs + "kgs");
                     }
                     break;
                 default:
