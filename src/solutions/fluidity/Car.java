@@ -10,17 +10,18 @@ public class Car {
     private StartVehicle startVehicle = new StartVehicle();
     private LoadVehicle loadVehicle = new LoadVehicle();
 
-    public Car(VehicleType vehicleType, int cargoLoad) {
+    public Car(VehicleType vehicleType, int cargoSpace) {
         if (vehicleType == null){
             throw new IllegalArgumentException("Vehicle type must be specified");
         }
-        if(cargoLoad < 0 ){
-            throw new RuntimeException("Cargo load must be greater or equal to 0. Entered cargo load is: " + cargoLoad + "kgs");
+        if(cargoSpace < 0 ){
+            throw new RuntimeException("Cargo load must be greater or equal to 0. Entered cargo load is: " + cargoSpace + "kgs");
         }
         this.vehicleType = vehicleType;
+        this.cargoSpace = cargoSpace;
         serviceVehicle.changeOil();
         serviceVehicle.fillUpPetrol();
-        loadVehicle.addCargo(cargoLoad);
+        loadVehicle.addCargo(cargoSpace);
         startVehicle.drive();
         stats.printStats();
     }
