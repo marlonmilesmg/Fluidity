@@ -11,9 +11,11 @@ public class Car {
     private LoadVehicle loadVehicle = new LoadVehicle();
 
     public Car(VehicleType vehicleType, int cargoLoad) {
-        // TODO: Optional check for null check for cargoLoad to be loaded
         if (vehicleType == null){
             throw new IllegalArgumentException("Vehicle type must be specified");
+        }
+        if(cargoLoad < 0 ){
+            throw new RuntimeException("Cargo load must be greater or equal to 0. Entered cargo load is: " + cargoLoad + "kgs");
         }
         this.vehicleType = vehicleType;
         serviceVehicle.changeOil();
